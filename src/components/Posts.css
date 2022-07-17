@@ -1,0 +1,37 @@
+.posts-video {
+  height: 30rem;
+  width: 25rem;
+  margin-bottom: 1rem;
+  position:relative;
+}
+
+.fa{
+    position: absolute;
+    bottom:1.5rem;
+    left:4.5rem;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.chat-icon{
+    position: absolute;
+    bottom:0.3rem;
+    left:7rem;
+    color:lightgrey;
+}
+
+
+
+.posts-video-container{
+    height: 90vh;
+    border-radius: 20px;
+    background-color: white;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+}
+
+.posts-video-container::-webkit-scrollbar{
+    display:none;
+}

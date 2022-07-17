@@ -1,0 +1,36 @@
+.login-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-content-wrapper{
+    padding-top: 1rem;
+    width:50%;
+    height:50%;
+}
+
+.login-image-wrapper{
+    margin-left: 10rem;
+    width:30%;
+    height:90%;
+}
+
+.login-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top:1rem;
+}
+
+.login-input-wrapper > * {
+    margin-bottom:1rem;
+}

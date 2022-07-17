@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,8 +8,66 @@ import Alert from "@mui/material/Alert";
 import { Input } from "@mui/material";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext.js";
+import { database, storage } from "../firebase";
+
 export default function Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
+  const [file, setFile] = useState("");
+  const { signup } = useContext(AuthContext);
+  const history = useNavigate();
+
+  const handleClick = async () => {
+    if (name === "" || email === "" || password === "" || file === null) {
+      setError("Please fill and upload the necessary details");
+      setTimeout(() => {
+        setError(null);
+      }, 2000);
+      return;
+    }
+    try {
+      setLoading(true);
+      let userObj = await signup(email, password);
+      let uid = userObj.user.uid;
+      let uploadTask = storage.ref(`/users/${uid}/ProfileImage`).put(file);
+      uploadTask.on('state_changed',fn1,fn2,fn3);
+      function fn1(snapshot){
+      }
+
+      function fn2(error){
+        setError(error);
+        setTimeout(() => setError(null),2000);
+        setLoading(false);
+        return;
+      }
+
+      function fn3(){
+        uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+          database.users.doc(uid).set(
+            {
+                fullName:name,
+                email:email,
+                profilePic:url,
+                createdAt:database.getTimeStamp(),
+                userId:uid
+            });
+            setLoading(false);
+            history("/");
+        })
+      }
+    } catch (error) {
+      setError(error);
+      setTimeout(() => {
+        setError(null);
+      }, 2000);
+    }
+  };
+
   return (
     <div className="signup-container">
       <div className="signup-wrapper">
@@ -33,11 +91,7 @@ export default function Signup() {
             >
               Signup to see photos and videos from your friends.
             </Typography>
-            {true && (
-              <Alert severity="error">
-                This is an error alert — check it out!
-              </Alert>
-            )}
+            {error !== null && <Alert severity="error">{error}</Alert>}
             <div
               className="signup-input-wrapper"
               style={{ marginTop: "0.5rem" }}
@@ -49,6 +103,7 @@ export default function Signup() {
                 autoFocus="true"
                 type="text"
                 margin="dense"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Input
                 placeholder="Password"
@@ -57,6 +112,9 @@ export default function Signup() {
                 autoFocus="true"
                 type="password"
                 margin="dense"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
               <Input
                 placeholder="Full Name"
@@ -65,6 +123,7 @@ export default function Signup() {
                 autoFocus="true"
                 type="text"
                 margin="dense"
+                onChange={(e) => setName(e.target.value)}
               />
               <Button
                 startIcon={<CloudUploadIcon />}
@@ -79,18 +138,20 @@ export default function Signup() {
                   type="file"
                   accept="image/*"
                   className="signup-upload-image"
+                  onChange={(e) => setFile(e.target.files[0])}
                 />
               </Button>
             </div>
             <Button
-              startIcon={<CloudUploadIcon />}
               variant="contained"
               color="primary"
               sx={{ alignSelf: "center", marginTop: "1rem" }}
               component="div"
               fullWidth="true"
+              disabled={loading}
+              onClick={handleClick}
             >
-              Signup
+              Sign Up
             </Button>
             <Typography
               gutterBottom
