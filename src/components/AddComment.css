@@ -1,0 +1,8 @@
+.liked-by-area{
+    display: flex;
+    align-items: center;
+}
+.write-area{
+    display: flex;
+    align-items: center;
+}

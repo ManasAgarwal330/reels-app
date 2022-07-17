@@ -35,3 +35,42 @@
 .posts-video-container::-webkit-scrollbar{
     display:none;
 }
+
+.modal-container{
+    height:70vh;
+    display: flex;
+}
+
+.modal-video-container{
+    height:100%;
+    width:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-video-container video{
+    height:100%;
+    width:100%
+}
+
+.comment-container{
+    width:50%;
+}
+
+.comments{
+    height:73%;
+    width:100%;
+    /* overflow:scroll; */
+    overflow-y: auto;
+    /* scroll-snap-type: y mandatory; */
+    scrollbar-width: none;
+    padding-left:0.5rem;
+
+}
+
+.comment-write-area{
+    height:25%;
+    width:100%;
+    padding-left:0.5rem;
+}

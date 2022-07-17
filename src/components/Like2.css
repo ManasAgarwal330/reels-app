@@ -1,0 +1,11 @@
+.like{
+    color: red;
+}
+
+.unlike{
+    color: lightgrey;
+}
+
+.icon-styling{
+    cursor:pointer;
+}
