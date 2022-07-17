@@ -19,12 +19,16 @@ export default function Feed() {
   }, [user]);
 
   return (
-    <div className="feed-container">
-      <Upload
-        userData={userData}
-      />
-      <button onClick={logout}>logout</button>
-      <Posts userData={userData} />
-    </div>
+    <>
+      {user === null || userData === undefined ? (
+        <></>
+      ) : (
+        <div className="feed-container">
+          <Upload userData={userData} />
+          <button onClick={logout}>logout</button>
+          <Posts userData={userData} />
+        </div>
+      )}
+    </>
   );
 }

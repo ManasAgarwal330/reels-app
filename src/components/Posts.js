@@ -39,7 +39,7 @@ export default function Posts({ userData }) {
   }, []);
   return (
     <div className="posts-video-container">
-      {postData === [] || userData === "" ? (
+      {postData === null || userData === undefined ? (
         <CircularProgress />
       ) : (
         postData.map((post, index) => (
