@@ -6,31 +6,36 @@
   align-items: center;
 }
 
-.login-image{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.login-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.login-content-wrapper{
-    padding-top: 1rem;
-    width:50%;
-    height:50%;
+.login-content-wrapper {
+  padding-top: 1rem;
+  width: 50%;
+  height: 50%;
 }
 
-.login-image-wrapper{
-    margin-left: 10rem;
-    width:30%;
-    height:90%;
+.login-image-wrapper {
+  margin-left: 10rem;
+  width: 30%;
+  height: 90%;
 }
 
+@media  screen and (min-width: 200px) and (max-width:1240px) {
+  .login-image-wrapper {
+    display: none;
+  }
+}
 .login-input-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top:1rem;
+  margin-top: 1rem;
 }
 
 .login-input-wrapper > * {
-    margin-bottom:1rem;
+  margin-bottom: 1rem;
 }
