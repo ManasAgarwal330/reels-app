@@ -3,8 +3,8 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import "./AddComment.css";
 import Button from "@mui/material/Button";
-import {database} from "../firebase";
-import Like2 from "./Like2.js";
+import {database} from "../../firebase";
+import Like2 from "../Like2/Like2.js";
 
 export default function AddComment({ user, post }) {
   const [text, setText] = useState("");

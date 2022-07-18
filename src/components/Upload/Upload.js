@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import "./Upload.css";
 import Alert from "@mui/material/Alert";
-import { storage, database } from "../firebase.js";
+import { storage, database } from "../../firebase.js";
 import { v4 as uuidv4 } from "uuid";
 import LinearProgress from "@mui/material/LinearProgress";
 

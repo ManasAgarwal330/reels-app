@@ -9,8 +9,8 @@ import { Input } from "@mui/material";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Link,useNavigate } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext.js";
-import { database, storage } from "../firebase";
+import { AuthContext } from "../../Context/AuthContext.js";
+import { database, storage } from "../../firebase";
 
 export default function Signup() {
   const [name, setName] = useState("");

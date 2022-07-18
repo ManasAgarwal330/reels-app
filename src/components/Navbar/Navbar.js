@@ -9,7 +9,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar({ user }) {

@@ -1,10 +1,10 @@
 import React from "react";
-import Upload from "./Upload.js";
-import { AuthContext } from "../Context/AuthContext";
-import { database } from "../firebase";
-import Posts from "./Posts";
+import Upload from "../Upload/Upload.js";
+import { AuthContext } from "../../Context/AuthContext";
+import { database } from "../../firebase";
+import Posts from "../Posts/Posts";
 import "./Feed.css";
-import Navbar from "./Navbar.js";
+import Navbar from "../Navbar/Navbar.js";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Feed() {

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { database } from "../firebase";
+import { database } from "../../firebase";
 import CircularProgress from "@mui/material/CircularProgress";
-import Video from "./Video.js";
+import Video from "../Video/Video.js";
 import "./Posts.css";
 import Avatar from "@mui/material/Avatar";
-import Like from "./Like.js";
+import Like from "../Like/Like.js";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import Dialog from "@mui/material/Dialog";
-import AddComment from "./AddComment";
-import Comment from "./Comment";
+import AddComment from "../AddComment/AddComment.js";
+import Comment from "../Comment/Comment";
 
 export default function Posts({ userData }) {
   const [postData, setPostData] = useState(null);

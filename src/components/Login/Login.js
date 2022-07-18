@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { CarouselProvider, Slider, Slide, Image } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 import Alert from "@mui/material/Alert";
 
 export default function Login() {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
-import { database } from "../firebase";
+import { database } from "../../firebase";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Comment({ post }) {

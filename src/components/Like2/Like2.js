@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { database } from "../firebase";
+import { database } from "../../firebase";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./Like2.css";
 

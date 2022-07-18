@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-import { database } from "../firebase";
-import Navbar from "./Navbar";
+import { database } from "../../firebase";
+import Navbar from "../Navbar/Navbar";
 import Avatar from "@mui/material/Avatar";
 import "./Profile.css";
-import Like from "./Like.js";
+import Like from "../Like/Like.js";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import Dialog from "@mui/material/Dialog";
-import AddComment from "./AddComment";
-import Comment from "./Comment";
+import AddComment from "../AddComment/AddComment.js";
+import Comment from "../Comment/Comment";
 
 export default function Profile() {
   const { id } = useParams();
