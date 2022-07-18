@@ -6,7 +6,7 @@ import "./Posts.css";
 import Avatar from "@mui/material/Avatar";
 import Like from "./Like.js";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
-import Dialog from '@mui/material/Dialog';
+import Dialog from "@mui/material/Dialog";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
 
@@ -37,6 +37,30 @@ export default function Posts({ userData }) {
 
     return unsub;
   }, []);
+
+  let observer = new IntersectionObserver(callback, {threshold:0.6});
+  function callback(entries){
+    entries.forEach((entry) => {
+      let element = entry.target.childNodes[0];
+      element.play().then(() => {
+        if(!element.paused && !entry.isIntersecting){
+          element.pause();
+        }
+      })
+    })
+    
+  }
+
+  useEffect(() => {
+    let elements = document.querySelectorAll(".posts-video");
+    elements.forEach((element) => {
+      observer.observe(element);
+    })
+
+    return () => {
+      observer.disconnect();
+    }
+  },[postData])
   return (
     <div className="posts-video-container">
       {postData === null || userData === undefined ? (
@@ -57,28 +81,45 @@ export default function Posts({ userData }) {
                   {userData.fullName}
                 </h5>
               </div>
-              <Like post={post} user={userData} />
-              <ChatBubbleIcon className="chat-icon" onClick={() => handleClickOpen(post.postId)}/>
+              <Like
+                post={post}
+                user={userData}
+                styleProp={{
+                  position: "absolute",
+                  bottom: "0rem",
+                  left: "5rem",
+                }}
+              />
+              <ChatBubbleIcon
+                className="chat-icon"
+                onClick={() => handleClickOpen(post.postId)}
+              />
               <Dialog
                 open={open === post.postId}
                 onClose={handleClose}
                 aria-describedby="alert-dialog-slide-description"
-                fullWidth ={true}
-                maxWidth = 'md'
+                fullWidth={true}
+                maxWidth="md"
               >
                 <div className="modal-container">
-                    <div className="modal-video-container">
-                        <video src={post.purl} controls muted="muted"></video>
+                  <div className="modal-video-container">
+                    <video src={post.purl} controls muted="muted"></video>
+                  </div>
+                  <div className="comment-container">
+                    <div className="comments">
+                      <Comment post={post} />
                     </div>
-                    <div className="comment-container">
-                        <div className="comments">
-                            <Comment post={post}/>
-                        </div>
-                        <div style={{height:"2%",width:"100%",backgroundColor:"white"}}></div>
-                        <div className="comment-write-area">
-                            <AddComment post={post} user={userData}/>
-                        </div>
+                    <div
+                      style={{
+                        height: "2%",
+                        width: "100%",
+                        backgroundColor: "white",
+                      }}
+                    ></div>
+                    <div className="comment-write-area">
+                      <AddComment post={post} user={userData} />
                     </div>
+                  </div>
                 </div>
               </Dialog>
             </div>

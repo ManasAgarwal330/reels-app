@@ -4,9 +4,11 @@ import { AuthContext } from "../Context/AuthContext";
 import { database } from "../firebase";
 import Posts from "./Posts";
 import "./Feed.css";
+import Navbar from "./Navbar.js";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Feed() {
-  const { logout, user } = React.useContext(AuthContext);
+  const { user } = React.useContext(AuthContext);
   const [userData, setUserData] = React.useState("");
 
   React.useEffect(() => {
@@ -21,11 +23,13 @@ export default function Feed() {
   return (
     <>
       {user === null || userData === undefined ? (
-        <></>
+        <CircularProgress
+          sx={{ position: "absolute", top: "10%", left: "48%", color: "red" }}
+        ></CircularProgress>
       ) : (
         <div className="feed-container">
+          <Navbar user={userData} />
           <Upload userData={userData} />
-          <button onClick={logout}>logout</button>
           <Posts userData={userData} />
         </div>
       )}

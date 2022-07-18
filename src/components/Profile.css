@@ -1,0 +1,54 @@
+.upper-info-container{
+    display: flex;
+    margin-top:1.5rem;
+    justify-content: center;
+}
+
+.profile-pic{
+    margin-right:3rem;
+}
+
+.profile-email{
+    margin-bottom:1rem;
+}
+
+.profile-posts-video {
+    height: 20rem;
+    width: 12rem;
+    position:relative;
+    /* border:1px solid ; */
+  }
+
+  .profile-post-container{
+    display: flex;
+    height:57vh;
+    flex-wrap: wrap;
+    gap:0.5rem;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    padding-left:2rem;
+    padding-right:2rem;
+  }
+
+  .profile-post-container::-webkit-scrollbar{
+    display:none;
+}
+
+  .profile-chat-icon{
+    position: absolute;
+    bottom:1%;
+    left:25%;
+    color:lightgrey;
+    cursor:pointer;
+}
+
+.profile-fa{
+    position: absolute;
+    bottom:5%;
+    left:6%;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+  
