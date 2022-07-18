@@ -58,10 +58,11 @@ export default function Login() {
         <div
           style={{
             position: "absolute",
-            height: "22.75rem",
-            width: "13rem",
-            top: "5rem",
-            left: "7.7rem",
+            height:"72%",
+            width:"54.5%",
+            top: "15.2%",
+            left: "32.2%",
+            // border:"2px solid black"
           }}
         >
           <CarouselProvider

@@ -26,6 +26,7 @@
 
 @media  screen and (min-width: 200px) and (max-width:1240px) {
   .login-image-wrapper {
+    width:0%;
     display: none;
   }
 }
