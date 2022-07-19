@@ -9,7 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Feed() {
   const { user } = React.useContext(AuthContext);
-  const [userData, setUserData] = React.useState("");
+  const [userData, setUserData] = React.useState(undefined);
 
   React.useEffect(() => {
     if (user === null) return;
@@ -22,7 +22,7 @@ export default function Feed() {
 
   return (
     <>
-      {user === null || userData === undefined ? (
+      {userData === undefined ? (
         <CircularProgress
           sx={{ position: "absolute", top: "10%", left: "48%", color: "red" }}
         ></CircularProgress>

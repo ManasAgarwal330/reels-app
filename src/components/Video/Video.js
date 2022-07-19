@@ -21,7 +21,9 @@ export default function Video({ post }) {
       muted="muted"
       onClick={handleClick}
       id={post.pid}
-      style={{ height: "100%", width: "100%",scrollSnapAlign:"start" }}
+      height={448}
+      width={400}
+      style={{scrollSnapAlign:"start" }}
     />
   );
 }

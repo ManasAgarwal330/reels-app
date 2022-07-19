@@ -16,6 +16,7 @@ export default function Profile() {
   const [post, setPost] = useState(null);
   const [user, setUser] = useState(null);
   const [open, setOpen] = React.useState(null);
+  const [run,setRun] = useState(false);
 
   const handleClickOpen = (pid) => {
     setOpen(pid);
@@ -26,6 +27,17 @@ export default function Profile() {
   };
 
   useEffect(() => {
+    async function func(){
+      console.log("working....");
+    let res = await database.users.doc(id).get();
+    setUser(res.data());
+    setRun(true);
+    console.log("complete....");
+    }
+    func();
+  },[]);
+
+  useEffect(() => {
     let unsub = database.users
       .doc(id)
       .onSnapshot((snapshot) => setUser(snapshot.data()));
@@ -34,20 +46,23 @@ export default function Profile() {
   }, [id]);
 
   useEffect(() => {
-    let parr = [];
-    const unsub = database.posts
-      .orderBy("createdAt", "desc")
-      .onSnapshot((snapshot) => {
-        parr = [];
-        snapshot.forEach((doc) => {
-          let data = { ...doc.data(), postId: doc.id };
-          parr.push(data);
-        });
-        setPost(parr);
-      });
+    if(!run)return;
+    const unsub = database.posts.onSnapshot(async (snapshot) => {
+      if (user === null || user.postIds === undefined) {
+        console.log("return user",user);
+        return;
+      }
+      let parr = [];
+      for (let i = 0; i < user.postIds.length; i++) {
+        let postData = await database.posts.doc(user.postIds[i]).get();
+        parr.push({ ...postData.data(), postId: postData.id });
+      }
+      console.log(parr);
+      setPost(parr);
+    });
 
     return unsub;
-  }, []);
+  }, [run]);
 
   useEffect(() => {
     async function func() {
@@ -88,7 +103,7 @@ export default function Profile() {
               </div>
               <div className="profile-posts">
                 <span>Number of Posts:</span>
-                {post === null ? (
+                {user.postIds === undefined ? (
                   <>
                     <span>0</span>
                   </>
